@@ -34,3 +34,53 @@ git status
 git add .
 git commit -m 'my second commit'
 ```
+
+## Removing files from stage, commit, revert to specific commit
+```
+mkdir test-repo
+cd test-repo
+git init 
+touch testfile-1 testfile-2 testfile-3 testfile-4
+git status
+git add . 
+git status
+
+git rm --cached testfile-1
+git status
+git rm --cached -r .
+git status
+
+echo 'first commit' > testfile-1
+echo 'first commit' > testfile-2
+echo 'first commit' > testfile-3
+git add . 
+git commit -m 'first commit'
+echo 'changes made after commit' >> testfile-1
+echo 'changes made after commit' >> testfile-2
+echo 'changes made after commit' >> testfile-3
+
+git status
+cat testfile-1
+git checkout testfile-1
+cat testfile-1
+git status 
+git checkout . 
+git status
+
+echo 'second commit' >> testfile-1
+git status
+git add .
+git commit -m 'second commit'
+echo  'third commit' >> testfile-2
+git status
+git add .
+git commit -m 'third commit'
+
+git reset --soft HEAD~1
+git status
+git log
+git reset --hard HEAD~1
+git status
+git log
+
+```
